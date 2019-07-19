@@ -1,0 +1,5639 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Qredit Node & QAE API",
+    "description" : "This is a API documentation for **the Qredit Blockhain** built with Swagger UI to make testing a breeze. \n\nThe **Community SSL Public API** used as test host is provided from **[qredit.io](https://www.qredit.io/)**.\n",
+    "version" : "2.4.15-oas3"
+  },
+  "servers" : [ {
+    "url" : "https://qredit.cloud/"
+  }, {
+    "url" : "https://qae.qredit.cloud/api"
+  } ],
+  "tags" : [ {
+    "name" : "Account",
+    "description" : "Operations for Accounts"
+  }, {
+    "name" : "Block",
+    "description" : "Operations for Blocks"
+  }, {
+    "name" : "Delegate",
+    "description" : "Operations for Delegates"
+  }, {
+    "name" : "Loader",
+    "description" : "Operations for Loaders"
+  }, {
+    "name" : "MultiSignature",
+    "description" : "Operations for Multi-Signatures"
+  }, {
+    "name" : "Peer",
+    "description" : "Operations for Peers"
+  }, {
+    "name" : "Signature",
+    "description" : "Operations for Signatures"
+  }, {
+    "name" : "Transaction",
+    "description" : "Operations for Transactions"
+  }, {
+    "name" : "Transport",
+    "description" : "Operations for Transports"
+  }, {
+    "name" : "QAE",
+    "description" : "Operations for Smart Contracts (Please select server qae.qredit.cloud/api)"
+  } ],
+  "paths" : {
+    "/tokens" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "List Tokens",
+        "description" : "Get list of Tokens\n",
+        "responses" : {
+          "200" : {
+            "description" : "An array of tokens",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/token/{token}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "Get token info",
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Token information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Token not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addresses" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "List Addresses",
+        "description" : "Get list of Tokens\n",
+        "responses" : {
+          "200" : {
+            "description" : "An array of addresses",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Address"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/address/{address}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "Get address info",
+        "parameters" : [ {
+          "name" : "address",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Address information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Address"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Token not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addressesByTokenId/{tokenid}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "Get all addresses for a tokenId",
+        "parameters" : [ {
+          "name" : "tokenid",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Address information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Address"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Token not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/balance/{tokenid}/{address}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "Get token balance by address and tokenid",
+        "parameters" : [ {
+          "name" : "tokenid",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "address",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Balance information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "List Transations",
+        "description" : "Get list of Transactions\n",
+        "responses" : {
+          "200" : {
+            "description" : "An array of transactions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/{txid}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "Get transaction info",
+        "parameters" : [ {
+          "name" : "txid",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Transaction information",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Token not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{tokenid}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "List Transactions for a TokenID",
+        "description" : "Get list of Transactions\n",
+        "parameters" : [ {
+          "name" : "tokenid",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "An array of transactions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{tokenid}/{address}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "List Transactions for a TokenID & Address",
+        "description" : "Get list of Transactions\n",
+        "parameters" : [ {
+          "name" : "tokenid",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "address",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "An array of transactions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tokensByOwner/{address}" : {
+      "get" : {
+        "tags" : [ "QAE" ],
+        "summary" : "Get tokens owned by address",
+        "parameters" : [ {
+          "name" : "address",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "An array of tokens",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Token"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Token not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/getBalance" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get the balance of an account",
+        "operationId" : "accounts.getBalance",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AccountsGetBalanceResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/getPublickey" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get the public key of an account",
+        "operationId" : "accounts.getPublickey",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AccountsGetPublickeyResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/delegates/fee" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get the delegate fee of an account",
+        "operationId" : "accounts.getDelegatesFee",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AccountsGetDelegatesFeeResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/delegates" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get the delegates of an account",
+        "operationId" : "accounts.getDelegates",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A string that specifies the column by which to sort the records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "An unsigned integer that specified the number of records to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AccountsGetDelegatesResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Returns account information of an address",
+        "operationId" : "accounts.getAccount",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AccountsGetAccountResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/top" : {
+      "get" : {
+        "tags" : [ "Account" ],
+        "summary" : "Get a list of top accounts",
+        "operationId" : "accounts.top",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "An unsigned integer that specified the number of records to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AccountsTopResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/get" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get block by id",
+        "operationId" : "blocks.getBlock",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetBlockResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get all blocks",
+        "operationId" : "blocks.getBlocks",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A string that specifies the column by which to sort the records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "An unsigned integer that specified the number of records to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "generatorPublicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "totalAmount",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "totalFee",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "reward",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "previousBlock",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "height",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetBlocksResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getEpoch" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain epoch",
+        "operationId" : "blocks.getEpoch",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetEpochResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getHeight" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain height",
+        "operationId" : "blocks.getHeight",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetHeightResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getNethash" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain nethash",
+        "operationId" : "blocks.getNethash",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetNethashResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getFee" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the transaction fee for sending \"normal\" transactions",
+        "operationId" : "blocks.getFee",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetFeeResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getFees" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the network fees",
+        "operationId" : "blocks.getFees",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetFeesResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getMilestone" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain milestone",
+        "operationId" : "blocks.getMilestone",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetMilestoneResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getReward" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain reward",
+        "operationId" : "blocks.getReward",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetRewardResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getSupply" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain supply",
+        "operationId" : "blocks.getSupply",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetSupplyResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getStatus" : {
+      "get" : {
+        "tags" : [ "Block" ],
+        "summary" : "Get the blockchain status",
+        "operationId" : "blocks.getStatus",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BlocksGetStatusResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/count" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get the count of delegates",
+        "operationId" : "delegates.count",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesCountResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/search" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Search for specific delegates",
+        "operationId" : "delegates.search",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "description" : "A search query.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesSearchResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/voters" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get a list of voters for a delegate",
+        "operationId" : "delegates.getVoters",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "publicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesGetVotersResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/get" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get a single delegate",
+        "operationId" : "delegates.getDelegate",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "publicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "description" : "A valid Qredit Delegate username.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesGetDelegateResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get all delegates",
+        "operationId" : "delegates.getDelegates",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A string that specifies the column by which to sort the records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "An unsigned integer that specified the number of records to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesGetDelegatesResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/fee" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get the delegate fee",
+        "operationId" : "delegates.getFee",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesGetFeeResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/forging/getForgedByAccount" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get the amount of Qredits forged by an account",
+        "operationId" : "delegates.getForgedByAccount",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "generatorPublicKey",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesGetForgedByAccountResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates/getNextForgers" : {
+      "get" : {
+        "tags" : [ "Delegate" ],
+        "summary" : "Get the next forger",
+        "operationId" : "delegates.getNextForgers",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DelegatesGetNextForgersResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/loader/status" : {
+      "get" : {
+        "tags" : [ "Loader" ],
+        "summary" : "Get the blockchain status",
+        "operationId" : "loader.status",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoaderStatusResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/loader/status/sync" : {
+      "get" : {
+        "tags" : [ "Loader" ],
+        "summary" : "Get the synchronisation status of the client",
+        "operationId" : "loader.sync",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoaderSyncResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/loader/autoconfigure" : {
+      "get" : {
+        "tags" : [ "Loader" ],
+        "summary" : "Auto-configure the client loader",
+        "operationId" : "loader.autoconfigure",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoaderAutoconfigureResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/multisignatures/pending" : {
+      "get" : {
+        "tags" : [ "MultiSignature" ],
+        "summary" : "Get pending multi signature transactions",
+        "operationId" : "multisignatures.pending",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "publicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MultisignaturesPendingResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/multisignatures/accounts" : {
+      "get" : {
+        "tags" : [ "MultiSignature" ],
+        "summary" : "Get a list of accounts",
+        "operationId" : "multisignature.getAccounts",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "publicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MultisignatureGetAccountsResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/peers/get" : {
+      "get" : {
+        "tags" : [ "Peer" ],
+        "summary" : "Get a single peer",
+        "operationId" : "peers.getPeer",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "ip",
+          "in" : "query",
+          "description" : "A valid server IP.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "port",
+          "in" : "query",
+          "description" : "A valid server Port.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PeersGetPeerResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/peers" : {
+      "get" : {
+        "tags" : [ "Peer" ],
+        "summary" : "Get all peers",
+        "operationId" : "peers.getPeers",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "state",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the peer state.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "os",
+          "in" : "query",
+          "description" : "A valid operating system.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A string that specifies the column by which to sort the records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "An unsigned integer that specified the number of records to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PeersGetPeersResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/peers/version" : {
+      "get" : {
+        "tags" : [ "Peer" ],
+        "summary" : "Get the peer version",
+        "operationId" : "peers.version",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PeersVersionResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/signatures/fee" : {
+      "get" : {
+        "tags" : [ "Signature" ],
+        "summary" : "Get the fee for a signature",
+        "operationId" : "signatures.fee",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SignaturesFeeResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions/get" : {
+      "get" : {
+        "tags" : [ "Transaction" ],
+        "summary" : "Get a single transaction",
+        "operationId" : "transactions.getTransaction",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "description" : "A valid transaction ID.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransactionsGetTransactionResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions" : {
+      "get" : {
+        "tags" : [ "Transaction" ],
+        "summary" : "Get all transactions",
+        "operationId" : "transactions.getTransactions",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "blockId",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the block ID.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the maximum number of records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "type",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the transaction type.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "orderBy",
+          "in" : "query",
+          "description" : "A string that specifies the column by which to sort the records.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "An unsigned integer that specified the number of records to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "senderPublicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vendorField",
+          "in" : "query",
+          "description" : "A string that specifies the SmartBridge used.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ownerPublicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ownerAddress",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "senderId",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "recipientId",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "amount",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the transaction amount.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "fee",
+          "in" : "query",
+          "description" : "An unsigned integer that specifies the transaction fee.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransactionsGetTransactionsResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions/unconfirmed/get" : {
+      "get" : {
+        "tags" : [ "Transaction" ],
+        "summary" : "Get a single unconfirmed transaction",
+        "operationId" : "transactions.getUnconfirmedTransaction",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "description" : "A valid unconfirmed transaction ID.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransactionsGetUnconfirmedTransactionResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions/unconfirmed" : {
+      "get" : {
+        "tags" : [ "Transaction" ],
+        "summary" : "Get all unconfirmed transactions",
+        "operationId" : "transactions.getUnconfirmedTransactions",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "senderPublicKey",
+          "in" : "query",
+          "description" : "A valid Qredit Public Key.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransactionsGetUnconfirmedTransactionsResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/list" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get a list of peers",
+        "operationId" : "transport.listBroadcastPeers",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportListBroadcastPeersResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/blocks/common" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get a list of blocks by ids",
+        "operationId" : "transport.commonBlock",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "ids",
+          "in" : "query",
+          "description" : "A list of block IDs.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportCommonBlockResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/block" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get a single block",
+        "operationId" : "transport.getBlock",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportGetBlockResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/blocks" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get all blocks",
+        "operationId" : "transport.getBlocks",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "address",
+          "in" : "query",
+          "description" : "A valid Qredit Address.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportGetBlocksResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/transactions" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "description" : "Get all transactions",
+        "operationId" : "transport.getTransactions",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportGetTransactionsResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Create a new transaction",
+        "operationId" : "transport.addTransactions",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "requestBody" : {
+          "description" : "A valid transaction object.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/TransportAddTransactionsRequest"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportAddTransactionsResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/transactionsFromIds" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get a list of transactions by ids",
+        "operationId" : "transport.transactionsFromIds",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        }, {
+          "name" : "ids",
+          "in" : "query",
+          "description" : "A list of transaction IDs.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportTransactionsFromIdsResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/height" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get the blockchain height",
+        "operationId" : "transport.height",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportHeightResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peer/status" : {
+      "get" : {
+        "tags" : [ "Transport" ],
+        "summary" : "Get the blockchain status",
+        "operationId" : "transport.status",
+        "parameters" : [ {
+          "name" : "nethash",
+          "in" : "header",
+          "description" : "A valid qredit-node nethash.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 255,
+            "type" : "string",
+            "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+          }
+        }, {
+          "name" : "version",
+          "in" : "header",
+          "description" : "A valid qredit-node version.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 11,
+            "type" : "string",
+            "default" : "2.4.15"
+          }
+        }, {
+          "name" : "port",
+          "in" : "header",
+          "description" : "A valid server port.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "maxLength" : 65535,
+            "minLength" : 1,
+            "type" : "integer",
+            "default" : 4103
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransportStatusResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Address" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer",
+            "description" : "The schema version this record was inserted with"
+          },
+          "recordId" : {
+            "type" : "string",
+            "description" : "Unique ID for this Address/TokenID"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "tokenIdHex" : {
+            "type" : "string"
+          },
+          "isOwner" : {
+            "type" : "boolean"
+          },
+          "tokenBalance" : {
+            "type" : "string"
+          },
+          "tokenDecimals" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Transaction" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer",
+            "description" : "The schema version this record was inserted with"
+          },
+          "txid" : {
+            "type" : "string",
+            "description" : "Transaction ID"
+          },
+          "blockId" : {
+            "type" : "string"
+          },
+          "blockHeight" : {
+            "type" : "integer"
+          },
+          "valid" : {
+            "type" : "boolean"
+          },
+          "invalidReason" : {
+            "type" : "string"
+          },
+          "transactionDetails" : {
+            "$ref" : "#/components/schemas/Transaction_transactionDetails"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer",
+            "description" : "The schema version this record was inserted with"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Token type"
+          },
+          "tokenDetails" : {
+            "$ref" : "#/components/schemas/Token_tokenDetails"
+          },
+          "tokenStats" : {
+            "$ref" : "#/components/schemas/Token_tokenStats"
+          },
+          "lastUpdatedBlock" : {
+            "type" : "integer",
+            "description" : "The last block ID this Token was updated in"
+          }
+        }
+      },
+      "AccountsAddDelegatesRequest" : {
+        "required" : [ "publicKey", "secret" ],
+        "type" : "object",
+        "properties" : {
+          "secret" : {
+            "type" : "string",
+            "description" : "A valid Qredit Passphrase."
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          },
+          "secondSecret" : {
+            "type" : "string",
+            "description" : "A valid secondary Qredit Passphrase."
+          }
+        }
+      },
+      "DelegatesAddDelegateRequest" : {
+        "type" : "object",
+        "properties" : {
+          "secret" : {
+            "type" : "string",
+            "description" : "A valid Qredit Passphrase."
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          },
+          "secondSecret" : {
+            "type" : "string",
+            "description" : "A valid secondary Qredit Passphrase."
+          },
+          "username" : {
+            "type" : "string",
+            "description" : "A valid Qredit Delegate username."
+          }
+        }
+      },
+      "MultisignaturesAddMultisignatureRequest" : {
+        "required" : [ "keysgroup", "lifetime", "min", "secret" ],
+        "type" : "object",
+        "properties" : {
+          "secret" : {
+            "type" : "string",
+            "description" : "A valid Qredit Passphrase."
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          },
+          "secondSecret" : {
+            "type" : "string",
+            "description" : "A valid secondary Qredit Passphrase."
+          },
+          "min" : {
+            "type" : "string"
+          },
+          "lifetime" : {
+            "type" : "string",
+            "description" : "An unsigned integer that specifies the lifetime."
+          },
+          "keysgroup" : {
+            "type" : "array",
+            "description" : "A list of public keys.",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "SignaturesAddSignatureRequest" : {
+        "required" : [ "multisigAccountPublicKey", "publicKey", "secondSecret", "secret" ],
+        "type" : "object",
+        "properties" : {
+          "secret" : {
+            "type" : "string",
+            "description" : "A valid Qredit Passphrase."
+          },
+          "secondSecret" : {
+            "type" : "string",
+            "description" : "A valid secondary Qredit Passphrase."
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          },
+          "multisigAccountPublicKey" : {
+            "type" : "string",
+            "description" : "A valid multi signature Qredit Public Key."
+          }
+        }
+      },
+      "TransactionsAddTransactionsRequest" : {
+        "required" : [ "amount", "recipientId", "secret" ],
+        "type" : "object",
+        "properties" : {
+          "secret" : {
+            "type" : "string",
+            "description" : "A valid Qredit Passphrase."
+          },
+          "amount" : {
+            "type" : "integer",
+            "description" : "An amount as unsigned integer."
+          },
+          "recipientId" : {
+            "type" : "string",
+            "description" : "A valid Qredit Address."
+          },
+          "vendorField" : {
+            "type" : "string",
+            "description" : "A string that will be used as SmartBridge."
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          },
+          "secondSecret" : {
+            "type" : "string",
+            "description" : "A valid secondary Qredit Passphrase."
+          },
+          "multisigAccountPublicKey" : {
+            "type" : "string",
+            "description" : "A valid multi signature Qredit Public Key."
+          }
+        }
+      },
+      "TransportAddTransactionsRequest" : {
+        "required" : [ "transactions" ],
+        "type" : "object",
+        "properties" : {
+          "transactions" : {
+            "type" : "array",
+            "description" : "A transaction object that should be processed.",
+            "items" : { }
+          }
+        }
+      },
+      "AccountsGetBalanceResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "balance" : {
+            "type" : "integer"
+          },
+          "unconfirmedBalance" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "AccountsGetPublickeyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          }
+        }
+      },
+      "AccountsGetDelegatesFeeResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "fee" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "AccountsGetDelegatesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "delegates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Delegate"
+            }
+          }
+        }
+      },
+      "AccountsAddDelegatesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "secret" : {
+            "type" : "string",
+            "description" : "A valid Qredit Passphrase."
+          },
+          "publicKey" : {
+            "type" : "string",
+            "description" : "A valid Qredit Public Key."
+          },
+          "secondSecret" : {
+            "type" : "string",
+            "description" : "A valid secondary Qredit Passphrase."
+          }
+        }
+      },
+      "AccountsGetAccountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "account" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Account"
+            }
+          }
+        }
+      },
+      "AccountsGetAllAccountsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "AccountsTopResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "accounts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TopAccount"
+            }
+          }
+        }
+      },
+      "AccountsCountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "block" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Block"
+            }
+          }
+        }
+      },
+      "BlocksGetBlockResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "block" : {
+            "$ref" : "#/components/schemas/Block"
+          }
+        }
+      },
+      "BlocksGetBlocksResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "blocks" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Block"
+            }
+          }
+        }
+      },
+      "BlocksGetEpochResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "epoch" : {
+            "type" : "string"
+          }
+        }
+      },
+      "BlocksGetHeightResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "BlocksGetNethashResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "nethash" : {
+            "type" : "string"
+          }
+        }
+      },
+      "BlocksGetFeeResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "fee" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "BlocksGetFeesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "send" : {
+            "type" : "integer"
+          },
+          "vote" : {
+            "type" : "integer"
+          },
+          "secondsignature" : {
+            "type" : "integer"
+          },
+          "delegate" : {
+            "type" : "integer"
+          },
+          "multisignature" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "BlocksGetMilestoneResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "milestone" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "BlocksGetRewardResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "reward" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "BlocksGetSupplyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "supply" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "BlocksGetStatusResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "epoch" : {
+            "type" : "string"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "fee" : {
+            "type" : "integer"
+          },
+          "milestone" : {
+            "type" : "integer"
+          },
+          "nethash" : {
+            "type" : "string"
+          },
+          "reward" : {
+            "type" : "integer"
+          },
+          "supply" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "DelegatesCountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "count" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "DelegatesSearchResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "delegates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DelegateSearchResult"
+            }
+          }
+        }
+      },
+      "DelegatesGetVotersResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "accounts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Voter"
+            }
+          }
+        }
+      },
+      "DelegatesGetDelegateResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "delegate" : {
+            "$ref" : "#/components/schemas/Voter"
+          }
+        }
+      },
+      "DelegatesGetDelegatesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "delegates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Delegate"
+            }
+          }
+        }
+      },
+      "DelegatesAddDelegateResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "DelegatesGetFeeResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "fee" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "DelegatesGetForgedByAccountResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "fees" : {
+            "type" : "integer"
+          },
+          "rewards" : {
+            "type" : "integer"
+          },
+          "forged" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "DelegatesGetNextForgersResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "currentBlock" : {
+            "type" : "integer"
+          },
+          "currentSlot" : {
+            "type" : "integer"
+          },
+          "delegates" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "DelegatesEnableForgingResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "DelegatesDisableForgingResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "LoaderStatusResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "loaded" : {
+            "type" : "boolean"
+          },
+          "now" : {
+            "type" : "integer"
+          },
+          "blocksCount" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "LoaderSyncResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "syncing" : {
+            "type" : "boolean"
+          },
+          "blocks" : {
+            "type" : "number"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "LoaderAutoconfigureResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "network" : {
+            "$ref" : "#/components/schemas/Network"
+          }
+        }
+      },
+      "MultisignaturesPendingResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "MultisignaturesSignResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "MultisignaturesAddMultisignatureResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "MultisignatureGetAccountsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "PeersGetPeerResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "peer" : {
+            "$ref" : "#/components/schemas/Peer"
+          }
+        }
+      },
+      "PeersGetPeersResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "peers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Peer"
+            }
+          }
+        }
+      },
+      "PeersVersionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "version" : {
+            "type" : "string"
+          },
+          "build" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SignaturesFeeResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "fee" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "SignaturesAddSignatureResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransactionsGetTransactionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "transaction" : {
+            "$ref" : "#/components/schemas/Transaction"
+          }
+        }
+      },
+      "TransactionsGetTransactionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "transactions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Transaction"
+            }
+          }
+        }
+      },
+      "TransactionsAddTransactionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransactionsGetUnconfirmedTransactionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransactionsGetUnconfirmedTransactionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportListBroadcastPeersResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "peers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Peer"
+            }
+          }
+        }
+      },
+      "TransportCommonBlockResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportGetBlockResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportGetBlocksResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportGetTransactionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportAddTransactionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportTransactionsFromIdsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          }
+        }
+      },
+      "TransportHeightResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "header" : {
+            "type" : "array",
+            "items" : { }
+          }
+        }
+      },
+      "TransportStatusResponse" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "forgingAllowed" : {
+            "type" : "boolean"
+          },
+          "currentSlot" : {
+            "type" : "integer"
+          },
+          "header" : {
+            "$ref" : "#/components/schemas/TransportPeerHeader"
+          }
+        }
+      },
+      "Account" : {
+        "type" : "object",
+        "properties" : {
+          "address" : {
+            "type" : "string"
+          },
+          "unconfirmedBalance" : {
+            "type" : "integer"
+          },
+          "balance" : {
+            "type" : "integer"
+          },
+          "publicKey" : {
+            "type" : "string"
+          },
+          "unconfirmedSignature" : {
+            "type" : "integer"
+          },
+          "secondSignature" : {
+            "type" : "integer"
+          },
+          "secondPublicKey" : {
+            "type" : "string"
+          },
+          "multisignatures" : {
+            "type" : "array",
+            "items" : { }
+          },
+          "u_multisignatures" : {
+            "type" : "array",
+            "items" : { }
+          }
+        }
+      },
+      "TopAccount" : {
+        "type" : "object",
+        "properties" : {
+          "address" : {
+            "type" : "string"
+          },
+          "balance" : {
+            "type" : "integer"
+          },
+          "publicKey" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Delegate" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "publicKey" : {
+            "type" : "string"
+          },
+          "vote" : {
+            "type" : "string"
+          },
+          "producedblocks" : {
+            "type" : "integer"
+          },
+          "missedblocks" : {
+            "type" : "integer"
+          },
+          "rate" : {
+            "type" : "integer"
+          },
+          "approval" : {
+            "type" : "number"
+          },
+          "productivity" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Block" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "version" : {
+            "type" : "integer"
+          },
+          "timestamp" : {
+            "type" : "integer"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "previousBlock" : {
+            "type" : "integer"
+          },
+          "numberOfTransactions" : {
+            "type" : "integer"
+          },
+          "totalAmount" : {
+            "type" : "integer"
+          },
+          "totalFee" : {
+            "type" : "integer"
+          },
+          "reward" : {
+            "type" : "integer"
+          },
+          "payloadLength" : {
+            "type" : "integer"
+          },
+          "payloadHash" : {
+            "type" : "string"
+          },
+          "generatorPublicKey" : {
+            "type" : "string"
+          },
+          "generatorId" : {
+            "type" : "string"
+          },
+          "blockSignature" : {
+            "type" : "string"
+          },
+          "confirmations" : {
+            "type" : "integer"
+          },
+          "totalForged" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "DelegateSearchResult" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "publicKey" : {
+            "type" : "string"
+          },
+          "vote" : {
+            "type" : "integer"
+          },
+          "producedblocks" : {
+            "type" : "integer"
+          },
+          "missedblocks" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Voter" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "publicKey" : {
+            "type" : "string"
+          },
+          "balance" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Network" : {
+        "type" : "object",
+        "properties" : {
+          "nethash" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "string"
+          },
+          "symbol" : {
+            "type" : "string"
+          },
+          "explorer" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Peer" : {
+        "type" : "object",
+        "properties" : {
+          "ip" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer"
+          },
+          "version" : {
+            "type" : "string"
+          },
+          "errors" : {
+            "type" : "integer"
+          },
+          "os" : {
+            "type" : "string"
+          },
+          "height" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "delay" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "TransportPeerHeader" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "version" : {
+            "type" : "integer"
+          },
+          "totalAmount" : {
+            "type" : "integer"
+          },
+          "totalFee" : {
+            "type" : "integer"
+          },
+          "reward" : {
+            "type" : "integer"
+          },
+          "payloadHash" : {
+            "type" : "string"
+          },
+          "payloadLength" : {
+            "type" : "integer"
+          },
+          "timestamp" : {
+            "type" : "integer"
+          },
+          "numberOfTransactions" : {
+            "type" : "integer"
+          },
+          "previousBlock" : {
+            "type" : "integer"
+          },
+          "generatorPublicKey" : {
+            "type" : "string"
+          },
+          "blockSignature" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether or not errors occurred"
+          },
+          "error" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Transaction_transactionDetails_sendOutPut" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Transaction_transactionDetails" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer"
+          },
+          "transactionType" : {
+            "type" : "string"
+          },
+          "senderAddress" : {
+            "type" : "string"
+          },
+          "tokenIdHex" : {
+            "type" : "string"
+          },
+          "versionType" : {
+            "type" : "integer"
+          },
+          "timestamp" : {
+            "type" : "string"
+          },
+          "timestamp_unix" : {
+            "type" : "integer"
+          },
+          "symbol" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "documentUri" : {
+            "type" : "string"
+          },
+          "decimals" : {
+            "type" : "integer"
+          },
+          "genesisOrMintQuantity" : {
+            "type" : "string"
+          },
+          "sendOutPut" : {
+            "$ref" : "#/components/schemas/Transaction_transactionDetails_sendOutPut"
+          }
+        }
+      },
+      "Token_tokenDetails" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer"
+          },
+          "ownderAdress" : {
+            "type" : "string"
+          },
+          "tokenIdHex" : {
+            "type" : "string"
+          },
+          "versionType" : {
+            "type" : "integer"
+          },
+          "genesis_timestamp" : {
+            "type" : "string"
+          },
+          "genesis_timestamp_unix" : {
+            "type" : "integrer"
+          },
+          "symbol" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "documentUri" : {
+            "type" : "string"
+          },
+          "decimals" : {
+            "type" : "integer"
+          },
+          "genesisQuantity" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token_tokenStats" : {
+        "type" : "object",
+        "properties" : {
+          "schema_version" : {
+            "type" : "integer"
+          },
+          "block_created" : {
+            "type" : "integer"
+          },
+          "block_last_active_send" : {
+            "type" : "integer"
+          },
+          "block_last_active_mint" : {
+            "type" : "integer"
+          },
+          "qty_valid_txns_since_genesis" : {
+            "type" : "integer"
+          },
+          "qty_valid_token_addresses" : {
+            "type" : "integer"
+          },
+          "qty_token_minted" : {
+            "type" : "string"
+          },
+          "qty_token_burned" : {
+            "type" : "string"
+          },
+          "qty_token_circulating_supply" : {
+            "type" : "string"
+          },
+          "qty_xqr_spent" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "ipHeader" : {
+        "name" : "ip",
+        "in" : "header",
+        "description" : "A valid server IP.",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "portHeader" : {
+        "name" : "port",
+        "in" : "header",
+        "description" : "A valid server port.",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "maxLength" : 65535,
+          "minLength" : 1,
+          "type" : "integer",
+          "default" : 4103
+        }
+      },
+      "osHeader" : {
+        "name" : "os",
+        "in" : "header",
+        "description" : "A valid operating system.",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "maxLength" : 255,
+          "type" : "string"
+        }
+      },
+      "nethashHeader" : {
+        "name" : "nethash",
+        "in" : "header",
+        "description" : "A valid qredit-node nethash.",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "maxLength" : 255,
+          "type" : "string",
+          "default" : "5e67037fd290ba7ab378e84a591d251c46eb9770eb134983771fd602233bf193"
+        }
+      },
+      "versionHeader" : {
+        "name" : "version",
+        "in" : "header",
+        "description" : "A valid qredit-node version.",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "maxLength" : 11,
+          "type" : "string",
+          "default" : "2.4.15"
+        }
+      }
+    }
+  },
+  "x-globalParameters" : [ {
+    "$ref" : "#/components/parameters/nethashHeader"
+  }, {
+    "$ref" : "#/components/parameters/versionHeader"
+  }, {
+    "$ref" : "#/components/parameters/portHeader"
+  } ]
+}
